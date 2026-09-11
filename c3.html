@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Account Settings</title>
+    <style>
+        :root {
+            --bg: #090d16;
+            --surface: #111827;
+            --border: #374151;
+            --accent: #6366f1;
+            --accent-hover: #4f46e5;
+            --text: #f9fafb;
+            --text-muted: #9ca3af;
+            --danger: #ef4444;
+            --radius: 1rem;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .settings-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .avatar-wrapper picture img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+        }
+
+        .profile-info h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .profile-info p {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        input {
+            background-color: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            color: var(--text);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        input:focus {
+            border-color: var(--accent);
+        }
+
+        details {
+            background-color: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            overflow: hidden;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            user-select: none;
+        }
+
+        details p {
+            margin-top: 0.75rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .btn-danger {
+            background-color: transparent;
+            color: var(--danger);
+            border: 1px solid var(--danger);
+        }
+
+        .btn-danger:hover {
+            background-color: rgba(239, 68, 68, 0.1);
+        }
+
+        dialog {
+            background-color: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+        }
+
+        dialog::backdrop {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+        }
+
+        .dialog-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .dialog-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+<body>
+    <main class="settings-container">
+        <header>
+            <h1>Account Settings</h1>
+            <p>Manage your profile preferences and security credentials.</p>
+        </header>
+
+        <section class="profile-section">
+            <div class="avatar-wrapper">
+                <picture>
+                    <source srcset="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80" media="(min-width: 800px)">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80" alt="User avatar">
+                </picture>
+            </div>
+            <div class="profile-info">
+                <h2>Alex Mercer</h2>
+                <p>alex.mercer@example.com</p>
+            </div>
+        </section>
+
+        <form>
+            <div class="form-group">
+                <label for="username">Display Username</label>
+                <input type="text" id="username" name="username" value="alexmercer" required minlength="3" autocomplete="username">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" value="alex.mercer@example.com" required autocomplete="email">
+            </div>
+
+            <details>
+                <summary>Advanced Security Settings</summary>
+                <p>Enabling hardware-backed security keys ensures maximum resistance against phishing attacks. Ensure your browser supports biometric hardware before proceeding.</p>
+            </details>
+
+            <div class="actions">
+                <button type="button" class="btn-danger" onclick="document.getElementById('confirm-dialog').showModal()">Delete Account</button>
+                <button type="submit" class="btn-primary">Save Changes</button>
+            </div>
+        </form>
+    </main>
+
+    <dialog id="confirm-dialog">
+        <div class="dialog-content">
+            <h2>Confirm Deletion</h2>
+            <p>Are you sure you want to delete your account? This action is permanent and cannot be undone.</p>
+            <div class="dialog-actions">
+                <button type="button" class="btn-primary" onclick="document.getElementById('confirm-dialog').close()">Cancel</button>
+                <button type="button" class="btn-danger" onclick="alert('Account deleted successfully'); document.getElementById('confirm-dialog').close()">Confirm</button>
+            </div>
+        </div>
+    </dialog>
+</body>
+</html>
